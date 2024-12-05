@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tanish Singla | Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Import Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;700&display=swap');
+
+        /* General Styling */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #0a0a23; /* Navy blue background */
+            background-image: radial-gradient(#0a52a0 0.5px, transparent 0.5px); /* Subtle, smaller dots */
+            background-size: 15px 15px; /* Smaller dot spacing */
+            background-attachment: fixed; /* Fix the background to the viewport */
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Navbar (Circular Buttons) */
+        .nav-sidebar {
+            position: fixed;
+            top: 50%;
+            left: 20px;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .nav-sidebar a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: rgba(20, 20, 48, 0.8);
+            color: #c4ff89;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-sidebar a:hover {
+            background: #c4ff89;
+            color: #0a0a23;
+            transform: scale(1.1);
+        }
+
+        .nav-sidebar a.active {
+            box-shadow: 0 0 10px #c4ff89;
+            background: #c4ff89;
+            color: #0a0a23;
+            transform: scale(1.2);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-section h1 {
+            font-size: 10rem; /* Increased font size */
+            font-family: 'Poppins', sans-serif; /* Changed to sans-serif font */
+            font-weight: 700; /* Bold */
+            color: rgb(255, 255, 255); /* Lime green color with opacity */
+            text-transform: uppercase; /* Convert text to uppercase */
+            text-shadow: 4px 4px 0 #c4ff89e9; /* Shadow for depth */
+            margin: 0;
+        }
+        
+        .hero-section p {
+            font-size: 1.5rem;
+            margin: 20px 0 30px;
+            color: #ffffff;
+        }
+
+        /* Shared Section Styles */
+        section {
+            text-align: center;
+            color: #fff;
+            padding: 80px 0;
+        }
+
+        section h2 {
+            font-size: 4rem;
+            color: #c4ff89;
+            margin-bottom: 40px;
+        }
+
+        section p, section .content {
+            font-size: 1.2rem;
+            color: #fff;
+        }
+
+        /* Projects Section */
+        #projects .timeline-container {
+            margin: 50px auto;
+            width: 80%;
+            padding: 100px 0;
+            position: relative;
+        }
+
+        #projects .timeline-line {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 4px;
+            height: 100%;
+            background: #c4ff89;
+            transform: translateX(-50%);
+        }
+
+        #projects .timeline-item {
+            position: relative;
+            margin: 50px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        #projects .timeline-item:nth-child(even) {
+            justify-content: flex-end;
+        }
+
+        #projects .timeline-item:nth-child(odd) {
+            justify-content: flex-start;
+        }
+
+        #projects .timeline-item .content {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            width: 40%;
+            color: #fff;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        #projects .timeline-item .content:hover {
+            transform: scale(1.05);
+        }
+
+        /* Skills Section */
+        #skills {
+            padding: 80px 0;
+        }
+
+        #skills h2 {
+            font-size: 4rem;
+            color: #c4ff89; /* Neon green text color */
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        #skills .skills-list {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
+            gap: 30px;
+            justify-items: center;
+        }
+
+        #skills .skill {
+            background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent background */
+            color: #fff;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #skills .skill i {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+
+        #skills .skill:hover {
+            transform: scale(1.1); /* Slight scale-up effect */
+            box-shadow: 0 0 15px rgba(196, 255, 137, 0.6); /* Subtle glow */
+            background-color: rgba(196, 255, 137, 0.1); /* Slightly greenish glow */
+        }
+
+        #skills .skill:hover i {
+            color: #c4ff89; /* Neon green color on hover */
+        }
+
+        #skills .skill:before {
+            content: "";
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border-radius: 20px;
+            border: 1px solid rgba(196, 255, 137, 0.5);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        #skills .skill:hover:before {
+            opacity: 1;
+        }
+        #name {
+            transition: transform 0.2s ease, color 0.2s ease; /* Smooth transitions */
+        }
+
+        #name:hover {
+            cursor: pointer;
+            color: #95ff2b; 
+        }
+
+        /* Education Section Background */
+        #education {
+            background-color: #0a0a23; /* Navy blue background */
+            background-image: radial-gradient(#0a52a0 0.5px, transparent 0.5px); /* Subtle, smaller dots */
+            background-size: 15px 15px; /* Smaller dot spacing */
+            background-attachment: fixed; /* Fix the background to the viewport */
+            color: #fff; /* White text for contrast */
+            padding: 80px 0; /* Keep the padding consistent */
+        }
+
+        #education h2 {
+            font-size: 4rem;
+            color: #c4ff89;
+            margin-bottom: 40px;
+        }
+
+        .timeline-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .timeline-item {
+            position: relative;
+            display: flex;
+            justify-content: flex-start;
+            margin: 30px 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            justify-content: flex-end;
+        }
+
+        .timeline-item .timeline-point {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background-color: #c4ff89;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .timeline-item .timeline-content {
+            position: relative;
+            width: 45%;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-item .timeline-content:hover {
+            transform: scale(1.05);
+        }
+
+        .timeline-item .timeline-content h4 {
+            font-size: 1.6rem;
+            color: #c4ff89;
+            margin-bottom: 10px;
+        }
+
+        .timeline-item .timeline-content p {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .timeline-item .timeline-content strong {
+            font-weight: bold;
+        }
+        /* Gradient Animation for Aurora Effect */
+        @keyframes gradientChange {
+            0% {
+                background-image: linear-gradient(45deg, #00ff95, #00c4ff, #7d4bba); /* Aurora green, blue, and purple */
+            }
+            25% {
+                background-image: linear-gradient(45deg, #00ff9e, #6e4bff, #ff6fff); /* Soft transition of green to purple-pink */
+            }
+            50% {
+                background-image: linear-gradient(45deg, #00ffd5, #9c79ff, #d85df4); /* Soft teal, violet, and pink */
+            }
+            75% {
+                background-image: linear-gradient(45deg, #6e00ff, #62c7ff, #fcb8ff); /* More intense purple, blue, and pink */
+            }
+            100% {
+                background-image: linear-gradient(45deg, #00ff99, #7d79ff, #ff9dff); /* Bright, vibrant transition */
+            }
+        }
+
+        #name {
+            display: inline-block; /* Ensures the gradient affects the text */
+            background-clip: text; /* Applies gradient to text */
+            color: transparent; /* Makes text transparent to show the background gradient */
+            animation: gradientChange 8s ease-in-out infinite; /* Slow, smooth aurora-like transition */
+        }   
+
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="nav-sidebar">
+        <a href="#home" class="active" id="home-nav"><i class="bi bi-house"></i></a>
+        <a href="#about" id="about-nav"><i class="bi bi-person"></i></a>
+        <a href="#projects" id="projects-nav"><i class="bi bi-journal-text"></i></a>
+        <a href="#skills" id="skills-nav"><i class="bi bi-briefcase"></i></a>
+        <a href="#education" id="education-nav"><i class="bi bi-mortarboard"></i></a>
+        <a href="#contact" id="contact-nav"><i class="bi bi-envelope"></i></a>
+    </div>
+
+    <!-- Sections -->
+    <div class="hero-section" id="home">
+        <h1 id="name">Tanish Singla</h1>
+        <p>Welcome to my portfolio <br>Discover my work and skills, and feel free to get in touch for any collaboration opportunities.</p>
+    </div>
+    <section id="about">
+        <h2>About Me</h2>
+        <p>I am a Second year student pursing Artificial Intelligence and Data Science @ Vishwakarma Institute Of Technology Campus.<br> I am always ready to have new experiences, meet new people and learn new things.
+            <br>-Innovation and Creativity are my peak interests
+            <br>-Here not just to join but to Add something</p>
+    </section>
+    <section id="projects">
+        <h2>My Projects</h2>
+        <div class="timeline-container">
+            <div class="timeline-line"></div>
+            <div class="timeline-item">
+                <div class="content">
+                    <h4>Electricity Generating Wrist Watch</h4>
+                    <p>Project description...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="skills">
+        <h2>Skills</h2>
+        <div class="skills-list">
+            <div class="skill"><i class="fab fa-html5"></i> </div>
+        <div class="skill"><i class="fab fa-c"></i> </div>
+        <div class="skill"><i class="fab fa-js-square"></i>jQuery</div>
+        <div class="skill"><i class="fab fa-react"></i> React</div>
+        <div class="skill"><i class="fas fa-paint-brush"></i> Graphic Design</div>
+        <div class="skill"><i class="fas fa-paint-brush"></i> Acrylic Painting</div>
+        <div class="skill"><i class="fab fa-git-alt"></i> Git</div>
+        </div>
+    </section>
+    <section id="education">
+        <h2>Education</h2>
+        <div class="timeline-container">
+            <!-- Vishwakarma Institute of Technology -->
+            <div class="timeline-item">
+                <div class="timeline-point"></div>
+                <div class="timeline-content">
+                    <h4>Vishwakarma Institute Of Technology</h4>
+                    <p><strong>Course:</strong> Artificial Intelligence and Data Science</p>
+                    <p><strong>Duration:</strong> Aug 2023 - Mar 2027</p>
+                    <p><strong>Skills:</strong> HTML5 · Microsoft Excel · C (Programming Language) · CSS</p>
+                </div>
+            </div>
+    
+            <!-- Aditya English Medium School -->
+            <div class="timeline-item">
+                <div class="timeline-point"></div>
+                <div class="timeline-content">
+                    <h4>Aditya English Medium School, Pune</h4>
+                    <p><strong>Grade:</strong> 11th-12th</p>
+                    <p><strong>Duration:</strong> May 2021 - Mar 2023</p>
+                </div>
+            </div>
+    
+            <!-- International Institute of Management Science -->
+            <div class="timeline-item">
+                <div class="timeline-point"></div>
+                <div class="timeline-content">
+                    <h4>International Institute of Management Science</h4>
+                    <p><strong>Grade:</strong> 8th-10th</p>
+                    <p><strong>Duration:</strong> Mar 2018 - Apr 2021</p>
+                    <p><strong>Skills:</strong> Acrylic Painting · Microsoft Excel</p>
+                </div>
+            </div>
+    
+            <!-- Delhi Public School -->
+            <div class="timeline-item">
+                <div class="timeline-point"></div>
+                <div class="timeline-content">
+                    <h4>Delhi Public School - India</h4>
+                    <p><strong>Grade:</strong> 5th-8th</p>
+                    <p><strong>Duration:</strong> 2015 - 2018</p>
+                    <p><strong>Skills:</strong> Acrylic Painting · Microsoft Excel</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact</h2>
+        <div class="container">
+            <!-- Contact Form Column -->
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="contact-info">
+                        <h3>Say hey!</h3>
+                        <form action="#" method="POST">
+                            <div class="form-group mb-3">
+                                <label for="full-name">Full Name</label>
+                                <input type="text" class="form-control" id="full-name" placeholder="Your Full Name" required>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="email">Email Address</label>
+                                <input type="email" class="form-control" id="email" placeholder="Your Email Address" required>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="message">Message</label>
+                                <textarea class="form-control" id="message" rows="4" placeholder="Your Message" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-warning mt-3" style="width: 100%;">Submit</button>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Social Media Column -->
+                <div class="col-md-6">
+                    <div class="contact-social text-end">
+                        <a href="https://www.linkedin.com/" class="btn btn-outline-light">
+                            <i class="bi bi-linkedin"></i> LinkedIn
+                        </a>
+                        <a href="mailto:example@example.com" class="btn btn-outline-light mt-3">
+                            <i class="bi bi-envelope"></i> Email
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Active Link Script
+        const sections = ['home', 'about', 'projects', 'skills', 'education', 'contact'];
+        const highlightNav = () => {
+            let currentSection = null;
+            sections.forEach(section => {
+                const element = document.getElementById(section);
+                if (window.scrollY >= element.offsetTop - 100) {
+                    currentSection = section;
+                }
+            });
+            document.querySelectorAll('.nav-sidebar a').forEach(link => {
+                link.classList.remove('active');
+            });
+            if (currentSection) {
+                document.getElementById(currentSection + '-nav').classList.add('active');
+            }
+        };
+        window.addEventListener('scroll', highlightNav);
+
+        const nameElement = document.getElementById('name');
+
+        nameElement.addEventListener('mousemove', (e) => {
+            const { clientX: mouseX, clientY: mouseY } = e; // Mouse position
+            const { left, top, width, height } = nameElement.getBoundingClientRect(); // Element position
+
+            // Calculate the distance from the mouse to the element's center
+            const centerX = left + width / 2;
+            const centerY = top + height / 2;
+
+            const offsetX = (mouseX - centerX) / 10; // Adjust the effect sensitivity
+            const offsetY = (mouseY - centerY) / 10;
+
+            // Apply the transformation to follow the cursor
+            nameElement.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+        });
+
+        nameElement.addEventListener('mouseleave', () => {
+            // Reset the transform when the mouse leaves the element
+            nameElement.style.transform = 'translate(0, 0)';
+        });
+    </script>
+</body>
+</html>
