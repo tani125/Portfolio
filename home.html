@@ -8,23 +8,20 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* Import Fonts */
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;700&display=swap');
 
-        /* General Styling */
         body {
             margin: 0;
             padding: 0;
-            background-color: #0a0a23; /* Navy blue background */
-            background-image: radial-gradient(#0a52a0 0.5px, transparent 0.5px); /* Subtle, smaller dots */
-            background-size: 15px 15px; /* Smaller dot spacing */
-            background-attachment: fixed; /* Fix the background to the viewport */
+            background-color: #0a0a23; 
+            background-image: radial-gradient(#0a52a0 0.5px, transparent 0.5px); 
+            background-size: 15px 15px; 
+            background-attachment: fixed; 
             font-family: 'Poppins', sans-serif;
             overflow-x: hidden;
             scroll-behavior: smooth;
         }
 
-        /* Navbar (Circular Buttons) */
         .nav-sidebar {
             position: fixed;
             top: 50%;
@@ -63,7 +60,6 @@
             transform: scale(1.2);
         }
 
-        /* Hero Section */
         .hero-section {
             height: 80vh;
             display: flex;
@@ -108,7 +104,6 @@
             color: #fff;
         }
 
-        /* Projects Section */
         #projects .timeline-container {
             margin: 50px auto;
             width: 80%;
@@ -154,74 +149,86 @@
         #projects .timeline-item .content:hover {
             transform: scale(1.05);
         }
-
-        /* Skills Section */
         #skills {
-            padding: 80px 0;
+            padding: 100px 50px; /* Added horizontal padding for spacing */
+            position: relative; /* Ensures it doesn't overlap the navbar */
+            z-index: 1;
+        }
+        .skills-list{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px; /* Add spacing between cards */
+            margin-top: 10px; /* Add space at the top of the group */
+            margin-bottom: 10px;
         }
 
         #skills h2 {
             font-size: 4rem;
-            color: #c4ff89; /* Neon green text color */
-            margin-bottom: 40px;
+            color: #c4ff89;
+            margin-bottom: 50px;
             text-transform: uppercase;
             text-align: center;
         }
 
         #skills .skills-list {
             display: grid;
-            grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Flexible grid */
+            gap: 20px; /* Increased gap for spacing */
             justify-items: center;
         }
 
         #skills .skill {
-            background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent background */
+            background-color: rgba(255, 255, 255, 0.1);
             color: #fff;
-            padding: 30px;
-            border-radius: 20px;
+            padding: 20px;
+            border-radius: 15px;
             text-align: center;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: 600;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-            position: relative;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 150px; /* Fixed card width for uniformity */
+            height: 150px; /* Fixed height for uniformity */
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
+            position: relative;
         }
 
         #skills .skill i {
             font-size: 2rem;
             margin-bottom: 10px;
+            color: #c4ff89; /* Neon green for icons */
             transition: color 0.3s ease;
         }
 
         #skills .skill:hover {
-            transform: scale(1.1); /* Slight scale-up effect */
-            box-shadow: 0 0 15px rgba(196, 255, 137, 0.6); /* Subtle glow */
-            background-color: rgba(196, 255, 137, 0.1); /* Slightly greenish glow */
+            transform: scale(1.1);
+            box-shadow: 0 8px 15px rgba(196, 255, 137, 0.5);
         }
 
         #skills .skill:hover i {
-            color: #c4ff89; /* Neon green color on hover */
+            color: #95ff2b; /* Brighter green on hover */
         }
 
-        #skills .skill:before {
-            content: "";
-            position: absolute;
-            top: -5px;
-            left: -5px;
-            right: -5px;
-            bottom: -5px;
-            border-radius: 20px;
-            border: 1px solid rgba(196, 255, 137, 0.5);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
+        @media (max-width: 768px) {
+            #skills .skills-list {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Smaller cards on smaller screens */
+                gap: 15px;
+            }
 
-        #skills .skill:hover:before {
-            opacity: 1;
+            #skills .skill {
+                width: 120px;
+                height: 120px;
+                font-size: 1rem;
+            }
+
+            #skills h2 {
+                font-size: 3rem; /* Adjust heading size on smaller screens */
+            }
         }
+        
         #name {
             transition: transform 0.2s ease, color 0.2s ease; /* Smooth transitions */
         }
@@ -231,7 +238,6 @@
             color: #95ff2b; 
         }
 
-        /* Education Section Background */
         #education {
             background-color: #0a0a23; /* Navy blue background */
             background-image: radial-gradient(#0a52a0 0.5px, transparent 0.5px); /* Subtle, smaller dots */
@@ -308,19 +314,19 @@
         /* Gradient Animation for Aurora Effect */
         @keyframes gradientChange {
             0% {
-                background-image: linear-gradient(45deg, #00ff95, #00c4ff, #7d4bba); /* Aurora green, blue, and purple */
+                background-image: linear-gradient(45deg, #00ff95, #00ff62, #92e7a3); 
             }
             25% {
-                background-image: linear-gradient(45deg, #00ff9e, #6e4bff, #ff6fff); /* Soft transition of green to purple-pink */
+                background-image: linear-gradient(45deg, #00ff9e, #1b5706, #0de355);
             }
             50% {
-                background-image: linear-gradient(45deg, #00ffd5, #9c79ff, #d85df4); /* Soft teal, violet, and pink */
+                background-image: linear-gradient(45deg, #00ffd5, #2dac51, #0bd52c); 
             }
             75% {
-                background-image: linear-gradient(45deg, #6e00ff, #62c7ff, #fcb8ff); /* More intense purple, blue, and pink */
+                background-image: linear-gradient(45deg, #1eff00, #00dca5, #00d861); 
             }
             100% {
-                background-image: linear-gradient(45deg, #00ff99, #7d79ff, #ff9dff); /* Bright, vibrant transition */
+                background-image: linear-gradient(45deg, #00ff99, #79ff8f, #00e22a); 
             }
         }
 
@@ -330,7 +336,88 @@
             color: transparent; /* Makes text transparent to show the background gradient */
             animation: gradientChange 8s ease-in-out infinite; /* Slow, smooth aurora-like transition */
         }   
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 5rem;
+            }
+            .skills-list {
+                grid-template-columns: repeat(2, 1fr); /* Reduce columns for smaller screens */
+            }
+        }
+        .timeline-point:hover {
+            background-color: #95ff2b;
+            box-shadow: 0 0 15px #95ff2b;
+        }
+        button.toggle-details {
+            background-color: var(--primary-color);
+            color: var(--button-text-color); 
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
 
+        button.toggle-details:hover {
+            background-color: var(--primary-hover-color);  
+        }
+
+        .details {
+            display: none;
+            text-align: left;
+            font-size: 13px;
+            margin-top: 10px;
+            color: var(--text-color);
+        }
+
+        .details ul {
+            margin: 5px 0;
+            padding-left: 20px;
+            color: var(--text-color);
+        }
+
+        .details ul ul {
+            list-style-type: disc;
+        }
+
+        .details li {
+            margin-bottom: 5px;
+        }
+        .github-btn {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 8px 16px;
+        font-size: 14px;
+        font-weight: bold;
+        color: #040058;
+        background-color: #c4ff89;
+        text-decoration: none;
+        border: none;
+        border-radius: 4px;
+        text-align: center;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .github-btn:hover {
+        background-color: #24292e;
+        transform: scale(1.05);
+        }
+        button:hover {
+            background-color: #a9e07b; 
+            transform: scale(1.05);  
+            color: #222;            
+        }
+
+        a.btn:hover {
+            background-color: #a9e07b; 
+            transform: scale(1.05);   
+            color: #222;             
+        }
+        a:hover {
+            color: #a9e07b; 
+            text-decoration: underline; 
+        }
     </style>
 </head>
 <body>
@@ -349,76 +436,215 @@
         <h1 id="name">Tanish Singla</h1>
         <p>Welcome to my portfolio <br>Discover my work and skills, and feel free to get in touch for any collaboration opportunities.</p>
     </div>
+
     <section id="about">
         <h2>About Me</h2>
-        <p>I am a Second year student pursing Artificial Intelligence and Data Science @ Vishwakarma Institute Of Technology Campus.<br> I am always ready to have new experiences, meet new people and learn new things.
-            <br>-Innovation and Creativity are my peak interests
-            <br>-Here not just to join but to Add something</p>
+        <p>
+            I am a second-year student pursuing a degree in<br> <strong>Artificial Intelligence and Data Science</strong> at 
+            <a href="https://www.vit.edu/" target="_blank" rel="noopener noreferrer" 
+            style="color: #c4ff89; text-decoration: none; transition: color 0.3s ease;">
+            Vishwakarma Institute of Technology
+         </a>            <br>I am passionate about exploring new experiences, meeting inspiring individuals, and continuously learning.
+        </p>
+        <p>
+            My core interests lie in <strong>innovation</strong> and <strong>creativity</strong>. 
+            <br>I aim not just to join initiatives but to make a meaningful contribution wherever I go, adding value through my skills and ideas.
+        </p>
     </section>
+
     <section id="projects">
         <h2>My Projects</h2>
         <div class="timeline-container">
-            <div class="timeline-line"></div>
-            <div class="timeline-item">
-                <div class="content">
-                    <h4>Electricity Generating Wrist Watch</h4>
-                    <p>Project description...</p>
-                </div>
+          <div class="timeline-line"></div>
+      
+          <div class="timeline-item">
+            <div class="content">
+              <h4>Electricity Generating Wrist Wearable</h4>
+              <p class="overview">
+                This innovative wrist wearable generates electricity from everyday
+                hand movements, providing a sustainable energy source for small
+                devices.
+              </p>
+              <button class="toggle-details" 
+                        style="color: #c4ff89; background: none; border: none; font-weight: 600; text-transform: uppercase; cursor: pointer; transition: color 0.3s ease;">
+                    Read More
+                </button>              
+            <div class="details">
+                <ul>
+                  <li><strong>Dual Energy Harvesting Mechanisms:</strong></li>
+                  <ul>
+                    <li>
+                      <strong>Piezoelectric Transducers:</strong> Convert mechanical
+                      stress from hand gestures into electrical energy.
+                    </li>
+                    <li>
+                      <strong>Magnetic Induction:</strong> Utilizes neodymium magnets
+                      and a copper solenoid for energy generation.
+                    </li>
+                  </ul>
+                  <li>
+                    <strong>Energy Storage:</strong> Compact, efficient battery ensures
+                    continuous power availability.
+                  </li>
+                  <li>
+                    <strong>Seamless Integration:</strong> Lightweight, ergonomic
+                    design combines all technologies.
+                  </li>
+                </ul>
+                <p>
+                  <strong>Impact:</strong> Feasible and sustainable energy generation
+                  reducing dependence on conventional sources.
+                </p>
+                <p>
+                  <strong>Applications:</strong> Ideal for small devices like fitness
+                  trackers or smartwatches.
+                </p>
+              </div>
             </div>
+          </div>
+      
+          <div class="timeline-item">
+            <div class="content">
+              <h4>Student Career Guidance using Generative AI</h4>
+              <p class="overview">
+                An AI-driven career guidance system that provides personalized career
+                pathways using the Gemini Pro API.
+              </p>
+              <button class="toggle-details" 
+              style="color: #c4ff89; background: none; border: none; font-weight: 600; text-transform: uppercase; cursor: pointer; transition: color 0.3s ease;">
+                    Read More
+                </button>              
+      <div class="details">
+                <ul>
+                  <li>
+                    <strong>Comprehensive Data Collection:</strong> Includes grade
+                    level, dream profession, academic interests, and technical skills.
+                  </li>
+                  <li>
+                    <strong>Recommendations:</strong> Covers competitive exams, good
+                    colleges, expected income, and future scope.
+                  </li>
+                  <li>
+                    <strong>Rich User Interface:</strong> Frontend and backend
+                    development ensure a seamless user experience.
+                  </li>
+                  <li>
+                    <strong>Powered by Gemini Pro:</strong> Utilizes a cutting-edge
+                    multimodal AI model for accurate and reliable career guidance.
+                  </li>
+                </ul>
+                <p>
+                  <strong>Outcome:</strong> Effective and equitable career pathway
+                  guidance validated through comprehensive testing.
+                </p>
+                <p>
+                  <strong>Applications:</strong> Ideal for students at various stages
+                  of their educational journey.
+                </p>
+              </div>
+            </div>
+          </div>
+      
+<div class="timeline-item">
+    <div class="content">
+      <h4>Prep-Wise AI: Your AI-Powered Placement Preparation Companion</h4>
+      <p class="overview">
+        Prep-Wise AI is your personalized AI-powered companion for placement
+        success. Get ready for a seamless, efficient, and effective preparation
+        journey.
+      </p>
+      <button class="toggle-details" 
+            style="color: #c4ff89; background: none; border: none; font-weight: 600; text-transform: uppercase; cursor: pointer; transition: color 0.3s ease;">
+        Read More
+        </button>      
+        <div class="details">
+        <ul>
+          <li>
+            <strong>Personalized Learning:</strong> Tailored learning plans
+            based on your strengths, weaknesses, and career goals.
+          </li>
+          <li>
+            <strong>Adaptive Learning:</strong> AI-powered learning modules
+            that adjust to your progress and provide personalized feedback.
+          </li>
+          <li>
+            <strong>Expert Guidance:</strong> Access to expert advice and
+            insights from industry professionals and placement experts.
+          </li>
+          <li>
+            <strong>Practice & Feedback:</strong> Mock interviews, aptitude
+            tests, and personalized feedback to help you improve.
+          </li>
+        </ul>
+        <p>
+          <strong>Impact:</strong> Enhances placement preparation efficiency,
+          offering tailored resources and feedback for better results.
+        </p>
+        <p>
+          <strong>Applications:</strong> Ideal for students preparing for
+          placements across various industries.
+        </p>
+        <a href="https://github.com/Cozzalpha/EDAI" target="_blank" class="github-btn">
+          View Code on GitHub
+        </a>
+      </div>
+    </div>
+  </div>
+          </div>
         </div>
-    </section>
+      </section>
+
     <section id="skills">
         <h2>Skills</h2>
         <div class="skills-list">
-            <div class="skill"><i class="fab fa-html5"></i> </div>
-        <div class="skill"><i class="fab fa-c"></i> </div>
-        <div class="skill"><i class="fab fa-js-square"></i>jQuery</div>
+        <div class="skill"><i class="fab fa-html5"></i>HTML5 </div>
+        <div class="skill"><i class="fas fa-code"></i> C Programming</div>
+        <div class="skill"><i class="fab fa-js"></i> JavaScript & jQuery</div>
         <div class="skill"><i class="fab fa-react"></i> React</div>
+        </div>
+        <div class = "skills-list">
         <div class="skill"><i class="fas fa-paint-brush"></i> Graphic Design</div>
         <div class="skill"><i class="fas fa-paint-brush"></i> Acrylic Painting</div>
         <div class="skill"><i class="fab fa-git-alt"></i> Git</div>
         </div>
     </section>
+
     <section id="education">
         <h2>Education</h2>
         <div class="timeline-container">
-            <!-- Vishwakarma Institute of Technology -->
+            
             <div class="timeline-item">
                 <div class="timeline-point"></div>
                 <div class="timeline-content">
-                    <h4>Vishwakarma Institute Of Technology</h4>
+                    <h4>Vishwakarma Institute Of Technology - Pune</h4>
                     <p><strong>Course:</strong> Artificial Intelligence and Data Science</p>
                     <p><strong>Duration:</strong> Aug 2023 - Mar 2027</p>
                     <p><strong>Skills:</strong> HTML5 · Microsoft Excel · C (Programming Language) · CSS</p>
                 </div>
             </div>
     
-            <!-- Aditya English Medium School -->
             <div class="timeline-item">
                 <div class="timeline-point"></div>
                 <div class="timeline-content">
-                    <h4>Aditya English Medium School, Pune</h4>
+                    <h4>Aditya English Medium School - Pune</h4>
                     <p><strong>Grade:</strong> 11th-12th</p>
                     <p><strong>Duration:</strong> May 2021 - Mar 2023</p>
                 </div>
             </div>
-    
-            <!-- International Institute of Management Science -->
-            <div class="timeline-item">
+                <div class="timeline-item">
                 <div class="timeline-point"></div>
                 <div class="timeline-content">
-                    <h4>Elpro International School,Pune</h4>
+                    <h4>Elpro International School - Pune</h4>
                     <p><strong>Grade:</strong> 8th-10th</p>
                     <p><strong>Duration:</strong> Mar 2018 - Apr 2021</p>
                     <p><strong>Skills:</strong> Acrylic Painting · Microsoft Excel</p>
                 </div>
             </div>
     
-            <!-- Delhi Public School -->
             <div class="timeline-item">
                 <div class="timeline-point"></div>
                 <div class="timeline-content">
-                    <h4>Delhi Public School - India</h4>
+                    <h4>Delhi Public School - Gurugram</h4>
                     <p><strong>Grade:</strong> 5th-8th</p>
                     <p><strong>Duration:</strong> 2015 - 2018</p>
                     <p><strong>Skills:</strong> Acrylic Painting · Microsoft Excel</p>
@@ -427,49 +653,57 @@
         </div>
     </section>
 
-    <section id="contact">
-        <h2>Contact</h2>
+    <section id="contact" style="background-color: #f8f9fa00; padding: 50px 0;">
         <div class="container">
-            <!-- Contact Form Column -->
-            <div class="row">
-                <div class="col-md-6">
+            <h2 class="text-center" style="font-size: 36px; font-weight: 700; margin-bottom: 30px; color: #c4ff89;">Contact</h2>
+            <div class="row align-items-center">
+                
+                <div class="col-lg-6">
                     <div class="contact-info">
-                        <h3>Say hey!</h3>
+                        <h3 style="font-size: 24px; font-weight: 600; margin-bottom: 20px; color: #c4ff89;">Say Hello!</h3>
                         <form action="#" method="POST">
-                            <div class="form-group mb-3">
-                                <label for="full-name">Full Name</label>
-                                <input type="text" class="form-control" id="full-name" placeholder="Your Full Name" required>
+                            <div class="form-group mb-4">
+                                <label for="full-name" style="font-weight: 500; color: #c4ff89;">Full Name</label>
+                                <input type="text" class="form-control" id="full-name" placeholder="Your Full Name" required
+                                    style="border-radius: 10px; border: 1px solid #ddd; padding: 10px;">
                             </div>
-                            <div class="form-group mb-3">
-                                <label for="email">Email Address</label>
-                                <input type="email" class="form-control" id="email" placeholder="Your Email Address" required>
+                            <div class="form-group mb-4">
+                                <label for="email" style="font-weight: 500; color: #c4ff89;">Email Address</label>
+                                <input type="email" class="form-control" id="email" placeholder="Your Email Address" required
+                                    style="border-radius: 10px; border: 1px solid #ddd; padding: 10px;">
                             </div>
-                            <div class="form-group mb-3">
-                                <label for="message">Message</label>
-                                <textarea class="form-control" id="message" rows="4" placeholder="Your Message" required></textarea>
+                            <div class="form-group mb-4">
+                                <label for="message" style="font-weight: 500; color: #c4ff89;">Message</label>
+                                <textarea class="form-control" id="message" rows="4" placeholder="Your Message" required
+                                    style="border-radius: 10px; border: 1px solid #ddd; padding: 10px;"></textarea>
                             </div>
-                            <button type="submit" class="btn btn-warning mt-3" style="width: 100%;">Submit</button>
-                        </form>
+                            <button type="submit" class="btn w-100" 
+                            style="background-color: #c4ff89; color: #333; border: 1px solid #c4ff89; border-radius: 10px; padding: 10px 20px; font-weight: 600; text-transform: uppercase; transition: background-color 0.3s ease, transform 0.2s ease;">
+                        Send Message
+                    </button>                        </form>
                     </div>
                 </div>
+    
                 
-                <!-- Social Media Column -->
-                <div class="col-md-6">
-                    <div class="contact-social text-end">
-                        <a href="https://www.linkedin.com/" class="btn btn-outline-light">
-                            <i class="bi bi-linkedin"></i> LinkedIn
-                        </a>
-                        <a href="mailto:example@example.com" class="btn btn-outline-light mt-3">
-                            <i class="bi bi-envelope"></i> Email
-                        </a>
-                    </div>
+                <div class="col-lg-6 text-center">
+                    <p style="font-size: 18px; font-weight: 500; margin-bottom: 20px; color: #c4ff89;">Connect with me:</p>
+                    <a href="https://www.linkedin.com/in/tanish-singla-487425201/" class="btn mb-3" 
+                       style="border-radius: 50px; padding: 10px 30px; font-weight: 600; background-color: #c4ff89; color: #333; border: 1px solid #c4ff89; text-transform: uppercase; transition: background-color 0.3s ease, transform 0.2s ease;">
+                        <i class="bi bi-linkedin"></i> LinkedIn
+                    </a>
+                    <a href="mailto:tanishsingla125@example.com" class="btn mb-3" 
+                       style="border-radius: 50px; padding: 10px 30px; font-weight: 600; background-color: #c4ff89; color: #333; border: 1px solid #c4ff89; text-transform: uppercase; transition: background-color 0.3s ease, transform 0.2s ease;">
+                        <i class="bi bi-envelope"></i> Email
+                    </a>
                 </div>
             </div>
         </div>
     </section>
+    <footer class="text-center p-4" style="background-color: #0a0a23; color: #c4ff89;">
+        <p>&copy; 2024 Tanish Singla | Designed with <i class="fas fa-heart"></i> and Passion</p>
+    </footer>
 
     <script>
-        // Active Link Script
         const sections = ['home', 'about', 'projects', 'skills', 'education', 'contact'];
         const highlightNav = () => {
             let currentSection = null;
@@ -506,9 +740,21 @@
         });
 
         nameElement.addEventListener('mouseleave', () => {
-            // Reset the transform when the mouse leaves the element
             nameElement.style.transform = 'translate(0, 0)';
         });
+
+        document.querySelectorAll(".toggle-details").forEach(button => {
+    button.addEventListener("click", function () {
+        const details = this.nextElementSibling;
+        if (details.style.display === "none" || !details.style.display) {
+            details.style.display = "block";
+            this.textContent = "Read Less";
+        } else {
+            details.style.display = "none";
+            this.textContent = "Read More";
+        }
+    });
+});
     </script>
 </body>
 </html>
